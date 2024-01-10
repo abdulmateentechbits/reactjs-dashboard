@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { setAuthentication } from '../../store/reducers/auth';
+import Header from './Header/Header';
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -11,12 +12,10 @@ const Main = () => {
         localStorage.removeItem("authentication");
     }
     return (
-        <div style={{ display: "flex", flexDirection: 'column', alignItems: 'center', rowGap: 10 }}>
-            <h1>Well come to the DashBoard</h1>
-            <Button onClick={logout} variant='danger'>
-                Logout
-            </Button>
-        </div>
+        <>
+            <Header />
+        </>
+
     )
 }
 
