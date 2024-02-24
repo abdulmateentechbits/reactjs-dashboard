@@ -5,14 +5,16 @@ export interface UiState {
     screenSize: string
     navbarVariant:string
     headerBorder:boolean
-    menuSideBarCollapsed:boolean
+    menuSideBarCollapsed:boolean,
+    sidebarSkin:string
 }
 
 const initialState: UiState = {
     screenSize: calculateWindowSize(window.innerWidth),
     navbarVariant:'navbar-light',
     headerBorder:false,
-    menuSideBarCollapsed:false
+    menuSideBarCollapsed:false,
+    sidebarSkin: 'sidebar-dark-primary',
 }
 
 export const uiSlice = createSlice({

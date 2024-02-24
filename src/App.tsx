@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './App.css'
 import { useWindowSize } from './hook/useWindowSize'
 import { calculateWindowSize } from './utils/helpers';
