@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IMenuItem } from '../../modules/Main/menu-sidebar/MenuSidebar'
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 const MenuItem = ({ menuItem }: { menuItem: IMenuItem }) => {
     const [t] = useTranslation();
@@ -65,7 +65,6 @@ const MenuItem = ({ menuItem }: { menuItem: IMenuItem }) => {
     return (
         <li className={`nav-item ${isMenuExtended ? "menu-open" : ""}`}>
             <a
-                href="/"
                 className={`nav-link ${isMainActive || isOneOfChildrenActive ? "active" : ""}`}
                 role='link'
                 onClick={handleMainMenuAction}
@@ -73,7 +72,25 @@ const MenuItem = ({ menuItem }: { menuItem: IMenuItem }) => {
             >
                 <i className={`${menuItem.icon}`}></i>
                 <p>{menuItem.name}</p>
+                {
+                    isExpandable ? <i className="right fas fa-angle-left" /> : null
+                }
             </a>
+            {
+                isExpandable &&
+                menuItem &&
+                menuItem.children &&
+                menuItem.children.map((item)=>(
+                    <ul key={item.name} className='navbar nav-treeview'>
+                     <li className='nav-item'>
+                        <NavLink to={`${item.path}`} className="nav-link">
+                          <i className={`${item.icon}`} />
+                          <p>{item.name}</p>
+                        </NavLink>
+                     </li>
+                    </ul>
+                ))
+            }
         </li>
     )
 }

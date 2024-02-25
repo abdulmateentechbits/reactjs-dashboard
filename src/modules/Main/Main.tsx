@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { setAuthentication } from '../../store/reducers/auth';
 import Header from './Header/Header';
 import MenuSidebar from './menu-sidebar/MenuSidebar';
+import { Outlet } from 'react-router-dom';
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,14 @@ const Main = () => {
         <>
             <Header />
             <MenuSidebar />
+
+            <div className="content-wrapper">
+                <div className="pt-3">
+                    <section className='content'>
+                        <Outlet />
+                    </section>
+                </div>
+            </div>
             
         </>
 

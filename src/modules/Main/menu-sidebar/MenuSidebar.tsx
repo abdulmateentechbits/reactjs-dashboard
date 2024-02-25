@@ -20,8 +20,25 @@ export interface IMenuItem {
     {
       name: "Settings",
       icon: 'fas fa-wrench nav-icon',
-      path: '/blank',
-    }
+      path: '/setting',
+    },
+    {
+        name: "Bank",
+        icon: 'far fa-caret-square-down nav-icon',
+        children: [
+          {
+            name: "Islamic Bank",
+            icon: 'fas fa-hammer nav-icon',
+            path: '/islamic-bank',
+          },
+    
+          {
+            name: "Meezan Bank",
+            icon: 'fas fa-cogs nav-icon',
+            path: '/meezan-bank',
+          },
+        ],
+      },
   ];
 
 const MenuSidebar = () => {

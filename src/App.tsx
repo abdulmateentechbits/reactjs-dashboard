@@ -13,6 +13,10 @@ import RecoverPassword from './modules/RecoverPassword/RecoverPassword';
 import PrivateRoute from './routes/PrivateRoutes';
 import Main from './modules/Main/Main';
 import { ToastContainer } from 'react-toastify';
+import BankIslami from './pages/bank/bank-islami';
+import MeezanBank from './pages/bank/meezan-bank';
+import Setting from './pages/setting/setting';
+import Dashboard from './pages/dashboard/dashboard';
 
 function App() {
   const windowSize = useWindowSize();
@@ -49,8 +53,11 @@ function App() {
         {/* Private routes */}
         <Route path='/' element={<PrivateRoute />}>
           <Route path='/' element={<Main />}>
-         
-
+          <Route path='/' element={<Dashboard/>}/>
+          <Route path='/islamic-bank' element={<BankIslami />} />
+          <Route path='/meezan-bank' element={<MeezanBank />} />
+          <Route path='/setting' element={<Setting />} />
+          
           </Route>
         </Route>
 
