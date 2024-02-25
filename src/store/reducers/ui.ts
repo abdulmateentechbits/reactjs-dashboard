@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { addWindowClass, calculateWindowSize } from "../../utils/helpers"
+import { addWindowClass, calculateWindowSize, removeWindowClass } from "../../utils/helpers"
+import { NAVBAR_DARK_VARIANTS, NAVBAR_LIGHT_VARIANTS, SIDEBAR_DARK_SKINS, SIDEBAR_LIGHT_SKINS } from "../../utils/themes"
 
 export interface UiState {
     screenSize: string
@@ -9,6 +10,7 @@ export interface UiState {
     sidebarSkin: string
     footerFixed: boolean
     headerFixed: boolean
+    darkMode:boolean
 }
 
 const initialState: UiState = {
@@ -18,7 +20,8 @@ const initialState: UiState = {
     menuSideBarCollapsed: false,
     sidebarSkin: 'sidebar-dark-primary',
     footerFixed: false,
-    headerFixed: false
+    headerFixed: false,
+    darkMode:false
 }
 
 addWindowClass("layout-footer-fixed");
@@ -48,13 +51,31 @@ export const uiSlice = createSlice({
             } else {
                 addWindowClass("layout-navbar-fixed")
             }
-        }
+        },
+        toggleDarkMode: (state) => {
+            state.darkMode = !state.darkMode;
+            if (state.darkMode) {
+              state.navbarVariant = NAVBAR_DARK_VARIANTS[0].value;
+              state.sidebarSkin = SIDEBAR_DARK_SKINS[0].value;
+            } else {
+              state.navbarVariant = NAVBAR_LIGHT_VARIANTS[0].value;
+              state.sidebarSkin = SIDEBAR_LIGHT_SKINS[0].value;
+            }
+            if (state.darkMode) {
+              addWindowClass('dark-mode');
+            } else {
+              removeWindowClass('dark-mode');
+            }
+          },
     }
 });
 
 export const {
     setWindowSize,
-    toggleSideBarMenu
+    toggleSideBarMenu,
+    toggleFooterFixed,
+    toggleHeaderFixed,
+    toggleDarkMode
 } = uiSlice.actions;
 
 
