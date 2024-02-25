@@ -49,7 +49,7 @@ function App() {
         <Route path='/recover-password' element={<PublicRoute />}>
           <Route path='/recover-password' element={<RecoverPassword />} />
         </Route>
-
+        
         {/* Private routes */}
         <Route path='/' element={<PrivateRoute />}>
           <Route path='/' element={<Main />}>

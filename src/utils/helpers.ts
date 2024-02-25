@@ -12,7 +12,23 @@ export const setWindowClasses =(classList:string)=>{
     if(window){
         // @ts-ignore
         window.classList = classList;
-    }
-
-    
+    }    
 }
+
+export const addWindowClass = (classList: string) => {
+    const window: HTMLElement | null =
+      document && document.getElementById('root');
+    if (window) {
+      // @ts-ignore
+      window.classList.add(classList);
+    }
+  };
+  
+  export const removeWindowClass = (classList: string) => {
+    const window: HTMLElement | null =
+      document && document.getElementById('root');
+    if (window) {
+      // @ts-ignore
+      window.classList.remove(classList);
+    }
+  };
