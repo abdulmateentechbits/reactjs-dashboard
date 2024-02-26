@@ -19,14 +19,14 @@ const Main = () => {
     const handleToggleMenuSideBar = () => {
         dispatch(toggleSideBarMenu())
     }
-   
+
     return (
         <>
             <Header />
             <MenuSidebar />
 
             <div className="content-wrapper">
-                <div className="pt-3">
+                <div className="pt-3 pl-2">
                     <section className='content'>
                         <Outlet />
                     </section>

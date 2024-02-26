@@ -10,7 +10,11 @@ export interface UiState {
     sidebarSkin: string
     footerFixed: boolean
     headerFixed: boolean
-    darkMode:boolean
+    darkMode: boolean,
+    layoutBoxed: boolean,
+    layoutFixed: boolean,
+    menuItemFlat: boolean;
+    menuChildIndent: boolean;
 }
 
 const initialState: UiState = {
@@ -21,7 +25,11 @@ const initialState: UiState = {
     sidebarSkin: 'sidebar-dark-primary',
     footerFixed: false,
     headerFixed: false,
-    darkMode:false
+    darkMode: false,
+    layoutBoxed: false,
+    layoutFixed: false,
+    menuItemFlat: false,
+    menuChildIndent: false
 }
 
 addWindowClass("layout-footer-fixed");
@@ -55,18 +63,58 @@ export const uiSlice = createSlice({
         toggleDarkMode: (state) => {
             state.darkMode = !state.darkMode;
             if (state.darkMode) {
-              state.navbarVariant = NAVBAR_DARK_VARIANTS[0].value;
-              state.sidebarSkin = SIDEBAR_DARK_SKINS[0].value;
+                state.navbarVariant = NAVBAR_DARK_VARIANTS[0].value;
+                state.sidebarSkin = SIDEBAR_DARK_SKINS[0].value;
             } else {
-              state.navbarVariant = NAVBAR_LIGHT_VARIANTS[0].value;
-              state.sidebarSkin = SIDEBAR_LIGHT_SKINS[0].value;
+                state.navbarVariant = NAVBAR_LIGHT_VARIANTS[0].value;
+                state.sidebarSkin = SIDEBAR_LIGHT_SKINS[0].value;
             }
             if (state.darkMode) {
-              addWindowClass('dark-mode');
+                addWindowClass('dark-mode');
             } else {
-              removeWindowClass('dark-mode');
+                removeWindowClass('dark-mode');
             }
-          },
+        },
+        toggleLayoutBox(state) {
+            state.layoutBoxed = !state.layoutBoxed;
+            if (state.layoutBoxed) {
+                addWindowClass('layout-boxed');
+            } else {
+                removeWindowClass('layout-boxed')
+            }
+        },
+        toggleHeaderBorder(state) {
+            state.headerBorder = !state.headerBorder
+        },
+        toggleLayoutFixed(state) {
+            state.layoutFixed = !state.layoutFixed;
+            if (state.layoutFixed) {
+                removeWindowClass('layout-fixed')
+            } else {
+                addWindowClass('layout-fixed')
+            }
+        },
+        toggleMenuItemFlat: (state) => {
+            state.menuItemFlat = !state.menuItemFlat;
+        },
+        toggleMenuChildIndent: (state) => {
+            state.menuChildIndent = !state.menuChildIndent;
+        },
+        setNavbarVariant: (state, { payload }) => {
+            if (state.darkMode) {
+                state.navbarVariant = payload || NAVBAR_DARK_VARIANTS[0].value;
+            } else {
+                state.navbarVariant = payload || NAVBAR_LIGHT_VARIANTS[0].value;
+            }
+        },
+        setSidebarSkin: (state, { payload }) => {
+            if (state.darkMode) {
+                state.sidebarSkin = payload || SIDEBAR_DARK_SKINS[0].value;
+            } else {
+                state.sidebarSkin = payload || SIDEBAR_LIGHT_SKINS[0].value;
+            }
+        },
+
     }
 });
 
@@ -75,7 +123,14 @@ export const {
     toggleSideBarMenu,
     toggleFooterFixed,
     toggleHeaderFixed,
-    toggleDarkMode
+    toggleDarkMode,
+    toggleLayoutBox,
+    toggleHeaderBorder,
+    toggleLayoutFixed,
+    toggleMenuItemFlat,
+    toggleMenuChildIndent,
+    setNavbarVariant,
+    setSidebarSkin
 } = uiSlice.actions;
 
 

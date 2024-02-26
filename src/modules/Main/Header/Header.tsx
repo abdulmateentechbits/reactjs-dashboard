@@ -56,6 +56,14 @@ const Header = () => {
                     </Link>
                 </li>
             </ul>
+            <ul className='nabar-nav ml-auto'>
+
+              <li className="nav-item">
+                <button type='button' className="nav-link">
+                    <i className="fas fa-th-large" />
+                </button>
+              </li>
+            </ul>
         </nav>
     )
 }
