@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image } from 'react-bootstrap';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, json } from 'react-router-dom';
 import MenuItem from '../../../components/menu-item/MenuItem';
 
@@ -42,6 +42,7 @@ export const MENU: IMenuItem[] = [
 ];
 
 const MenuSidebar = () => {
+  const dispatch = useDispatch();
   const sidebarSkin = useSelector((state: any) => state.ui.sidebarSkin);
   const auth = useSelector((state: any) => state.auth.authentication);
   const authentication = JSON.parse(auth);

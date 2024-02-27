@@ -2,8 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAuthentication } from '../../../store/reducers/auth';
 import { useCallback } from 'react';
 import { Button } from 'react-bootstrap';
-import { toggleSideBarMenu } from '../../../store/reducers/ui';
+import { toggleControlSidebar, toggleSideBarMenu } from '../../../store/reducers/ui';
 import { Link } from 'react-router-dom';
+import MessageDropDown from './message-dropdown';
+import NotificationDropdown from './notification-dropdown';
+import LanguageDropdown from './language-dropdown';
+import UserDropDown from './user-dropdown';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -11,10 +15,7 @@ const Header = () => {
     const headerBorder = useSelector((state: any) => state.ui.headerBorder);
     const menuSideBarCollapsed = useSelector((state: any) => state.ui.menuSideBarCollapsed);
 
-    const logout = () => {
-        dispatch(setAuthentication(undefined));
-        localStorage.removeItem("authentication");
-    }
+   
 
     const getContainerClasses = useCallback(() => {
         let classes = `main-header navbar navbar-expand ${navbarVariant}`;
@@ -29,6 +30,9 @@ const Header = () => {
 
     const handleToggleMenuBar = () => {
         dispatch(toggleSideBarMenu())
+    }
+    const handleToggleControlSidebar = () => {
+        dispatch(toggleControlSidebar())
     }
 
 
@@ -56,13 +60,20 @@ const Header = () => {
                     </Link>
                 </li>
             </ul>
-            <ul className='nabar-nav ml-auto'>
-
-              <li className="nav-item">
-                <button type='button' className="nav-link">
-                    <i className="fas fa-th-large" />
-                </button>
-              </li>
+            <ul className="navbar-nav ml-auto">
+                <MessageDropDown />
+                <NotificationDropdown />
+                <LanguageDropdown/>
+                <UserDropDown/>
+                <li className="nav-item">
+                    <button
+                        type="button"
+                        className="nav-link"
+                        onClick={handleToggleControlSidebar}
+                    >
+                        <i className="fas fa-th-large" />
+                    </button>
+                </li>
             </ul>
         </nav>
     )

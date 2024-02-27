@@ -15,6 +15,7 @@ export interface UiState {
     layoutFixed: boolean,
     menuItemFlat: boolean;
     menuChildIndent: boolean;
+    controlSidebarCollapsed: boolean;
 }
 
 const initialState: UiState = {
@@ -29,7 +30,8 @@ const initialState: UiState = {
     layoutBoxed: false,
     layoutFixed: false,
     menuItemFlat: false,
-    menuChildIndent: false
+    menuChildIndent: false,
+    controlSidebarCollapsed:false
 }
 
 addWindowClass("layout-footer-fixed");
@@ -114,6 +116,9 @@ export const uiSlice = createSlice({
                 state.sidebarSkin = payload || SIDEBAR_LIGHT_SKINS[0].value;
             }
         },
+        toggleControlSidebar: (state) => {
+            state.controlSidebarCollapsed = !state.controlSidebarCollapsed;
+          },
 
     }
 });
@@ -130,7 +135,8 @@ export const {
     toggleMenuItemFlat,
     toggleMenuChildIndent,
     setNavbarVariant,
-    setSidebarSkin
+    setSidebarSkin,
+    toggleControlSidebar
 } = uiSlice.actions;
 
 
