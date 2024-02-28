@@ -15,7 +15,7 @@ const UserDropDown = () => {
     const navigateToProfile = (event: any) => {
         event.preventDefault();
         setDropdownOpen(false);
-        navigate('/profile');
+        navigate('/');
     };
     const logout = () => {
         dispatch(setAuthentication(undefined));
