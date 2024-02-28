@@ -10,12 +10,6 @@ import SidebarControl from './sidebar-control/sidebar-control';
 
 const Main = () => {
     const dispatch = useDispatch();
-    console.log("Local storage length", localStorage.length);
-
-    const logout = () => {
-        dispatch(setAuthentication(undefined));
-        localStorage.removeItem("authentication");
-    }
     const handleToggleMenuSideBar = () => {
         dispatch(toggleSideBarMenu())
     }

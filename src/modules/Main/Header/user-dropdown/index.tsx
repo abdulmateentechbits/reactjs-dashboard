@@ -9,8 +9,7 @@ import { DateTime } from 'luxon';
 const UserDropDown = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector((state: any) => state.auth.authentication);
-    const authentication = JSON.parse(user);
+    const authentication = useSelector((state: any) => state.auth.authentication);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     
     const navigateToProfile = (event: any) => {

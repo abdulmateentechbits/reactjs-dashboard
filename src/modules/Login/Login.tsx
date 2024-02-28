@@ -74,7 +74,7 @@ const Login = () => {
     const onGoogleLoginError = (error: any) => {
         console.log("🚀 ~ onGoogleLoginError ~ error:", error)
     }
-    setWindowClasses('hold-transition login-page');
+    // setWindowClasses('hold-transition login-page');
     return (
         <div className='login-page'>
             <Card style={{ width: 500, padding: 10, paddingBottom: 20 }}>
